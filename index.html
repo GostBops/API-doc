@@ -788,6 +788,16 @@ margin-bottom: 20px;
     } ]
   }
 };
+            defs.ArticlesResponse = {
+  "properties" : {
+    "Articles" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/ArticleResponse"
+      }
+    }
+  }
+};
             defs.body = {
   "type" : "object",
   "properties" : {
@@ -834,6 +844,16 @@ margin-bottom: 20px;
     "author" : "author",
     "articleId" : 0,
     "content" : "content"
+  }
+};
+            defs.Comments = {
+  "properties" : {
+    "contents" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Comment"
+      }
+    }
   }
 };
             defs.inline_response_200 = {
@@ -1179,7 +1199,7 @@ except ApiException as e:
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - successful operation </h3>
+                            <h3> Status: 200 - Successful Operation </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
@@ -1194,7 +1214,7 @@ except ApiException as e:
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "successful operation",
+  "description" : "Successful Operation",
   "schema" : {
     "$ref" : "#/definitions/Article"
   }
@@ -1222,20 +1242,92 @@ except ApiException as e:
                                 </div>
                             </div>
 
-                            <h3> Status: 400 - Invalid Id value </h3>
+                            <h3> Status: 400 - Bad Request </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getArticleById-400-schema">Schema</a>
+                                </li>
+
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getArticleById-400-schema">
+                                  <div id='responses-getArticleById-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Bad Request",
+  "schema" : {
+    "type" : "string",
+    "example" : ""
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getArticleById-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getArticleById-400-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getArticleById-400-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
 
-                            <h3> Status: 404 - Article Not Found </h3>
+                            <h3> Status: 404 - Not Found </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getArticleById-404-schema">Schema</a>
+                                </li>
+
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getArticleById-404-schema">
+                                  <div id='responses-getArticleById-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Not Found",
+  "schema" : {
+    "type" : "string",
+    "example" : ""
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getArticleById-404-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getArticleById-404-schema-404');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getArticleById-404-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
 
                         </article>
@@ -1291,7 +1383,7 @@ public class ArticleApiExample {
         ArticleApi apiInstance = new ArticleApi();
         String username = username_example; // String | 
         try {
-            array[ArticleResponse] result = apiInstance.getArticlesOfUser(username);
+            ArticlesResponse result = apiInstance.getArticlesOfUser(username);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ArticleApi#getArticlesOfUser");
@@ -1310,7 +1402,7 @@ public class ArticleApiExample {
         ArticleApi apiInstance = new ArticleApi();
         String username = username_example; // String | 
         try {
-            array[ArticleResponse] result = apiInstance.getArticlesOfUser(username);
+            ArticlesResponse result = apiInstance.getArticlesOfUser(username);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ArticleApi#getArticlesOfUser");
@@ -1330,7 +1422,7 @@ ArticleApi *apiInstance = [[ArticleApi alloc] init];
 
 // Get articles of the user
 [apiInstance getArticlesOfUserWith:username
-              completionHandler: ^(array[ArticleResponse] output, NSError* error) {
+              completionHandler: ^(ArticlesResponse output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -1383,7 +1475,7 @@ namespace Example
             try
             {
                 // Get articles of the user
-                array[ArticleResponse] result = apiInstance.getArticlesOfUser(username);
+                ArticlesResponse result = apiInstance.getArticlesOfUser(username);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1487,7 +1579,7 @@ except ApiException as e:
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - successful operation </h3>
+                            <h3> Status: 200 - Successful Operation </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
@@ -1502,12 +1594,9 @@ except ApiException as e:
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "successful operation",
+  "description" : "Successful Operation",
   "schema" : {
-    "type" : "array",
-    "items" : {
-      "$ref" : "#/definitions/ArticleResponse"
-    }
+    "$ref" : "#/definitions/ArticlesResponse"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -1533,12 +1622,48 @@ except ApiException as e:
                                 </div>
                             </div>
 
-                            <h3> Status: 404 - User Not Found </h3>
+                            <h3> Status: 404 - Not Found </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getArticlesOfUser-404-schema">Schema</a>
+                                </li>
+
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getArticlesOfUser-404-schema">
+                                  <div id='responses-getArticlesOfUser-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Not Found",
+  "schema" : {
+    "type" : "string",
+    "example" : ""
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getArticlesOfUser-404-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getArticlesOfUser-404-schema-404');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getArticlesOfUser-404-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
 
                         </article>
@@ -1594,7 +1719,7 @@ public class ArticleApiExample {
         ArticleApi apiInstance = new ArticleApi();
         Integer id = 56; // Integer | The only id of the article to return
         try {
-            array[Comment] result = apiInstance.getCommentsOfArticle(id);
+            Comments result = apiInstance.getCommentsOfArticle(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ArticleApi#getCommentsOfArticle");
@@ -1613,7 +1738,7 @@ public class ArticleApiExample {
         ArticleApi apiInstance = new ArticleApi();
         Integer id = 56; // Integer | The only id of the article to return
         try {
-            array[Comment] result = apiInstance.getCommentsOfArticle(id);
+            Comments result = apiInstance.getCommentsOfArticle(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ArticleApi#getCommentsOfArticle");
@@ -1633,7 +1758,7 @@ ArticleApi *apiInstance = [[ArticleApi alloc] init];
 
 // Get all comments of an article
 [apiInstance getCommentsOfArticleWith:id
-              completionHandler: ^(array[Comment] output, NSError* error) {
+              completionHandler: ^(Comments output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -1686,7 +1811,7 @@ namespace Example
             try
             {
                 // Get all comments of an article
-                array[Comment] result = apiInstance.getCommentsOfArticle(id);
+                Comments result = apiInstance.getCommentsOfArticle(id);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1807,10 +1932,7 @@ except ApiException as e:
                                         var schemaWrapper = {
   "description" : "successful operation",
   "schema" : {
-    "type" : "array",
-    "items" : {
-      "$ref" : "#/definitions/Comment"
-    }
+    "$ref" : "#/definitions/Comments"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -1836,20 +1958,92 @@ except ApiException as e:
                                 </div>
                             </div>
 
-                            <h3> Status: 400 - Invalid ID supplied </h3>
+                            <h3> Status: 400 - Bad Request </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getCommentsOfArticle-400-schema">Schema</a>
+                                </li>
+
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getCommentsOfArticle-400-schema">
+                                  <div id='responses-getCommentsOfArticle-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Bad Request",
+  "schema" : {
+    "type" : "string",
+    "example" : ""
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getCommentsOfArticle-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getCommentsOfArticle-400-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getCommentsOfArticle-400-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
 
-                            <h3> Status: 404 - Article Not Found </h3>
+                            <h3> Status: 404 - Not Found </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getCommentsOfArticle-404-schema">Schema</a>
+                                </li>
+
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getCommentsOfArticle-404-schema">
+                                  <div id='responses-getCommentsOfArticle-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Not Found",
+  "schema" : {
+    "type" : "string",
+    "example" : ""
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getCommentsOfArticle-404-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getCommentsOfArticle-404-schema-404');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getCommentsOfArticle-404-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
 
                         </article>
@@ -3718,7 +3912,7 @@ $(document).ready(function() {
           </div>
           <div id="generator">
             <div class="content">
-              Generated 2018-12-05T03:27:03.993Z
+              Generated 2018-12-10T06:09:31.012Z
             </div>
           </div>
       </div>
