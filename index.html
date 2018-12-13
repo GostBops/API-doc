@@ -698,7 +698,7 @@ margin-bottom: 20px;
     var defs = {}
             defs.Article = {
   "type" : "object",
-  "required" : [ "author", "content", "id", "name" ],
+  "required" : [ "content", "id", "name" ],
   "properties" : {
     "id" : {
       "type" : "integer"
@@ -711,9 +711,6 @@ margin-bottom: 20px;
       "items" : {
         "$ref" : "#/definitions/Tag"
       }
-    },
-    "author" : {
-      "type" : "string"
     },
     "date" : {
       "type" : "string"
@@ -735,26 +732,6 @@ margin-bottom: 20px;
     } ]
   }
 };
-            defs.ArticleCreate = {
-  "type" : "object",
-  "properties" : {
-    "content" : {
-      "type" : "string"
-    },
-    "tags" : {
-      "type" : "array",
-      "items" : {
-        "type" : "string"
-      }
-    },
-    "name" : {
-      "type" : "string"
-    },
-    "token" : {
-      "type" : "string"
-    }
-  }
-};
             defs.ArticleResponse = {
   "properties" : {
     "id" : {
@@ -762,30 +739,7 @@ margin-bottom: 20px;
     },
     "name" : {
       "type" : "string"
-    },
-    "tags" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/Tag"
-      }
-    },
-    "author" : {
-      "type" : "string"
-    },
-    "date" : {
-      "type" : "string"
     }
-  },
-  "example" : {
-    "date" : "date",
-    "author" : "author",
-    "name" : "name",
-    "id" : 0,
-    "tags" : [ {
-      "name" : "name"
-    }, {
-      "name" : "name"
-    } ]
   }
 };
             defs.ArticlesResponse = {
@@ -799,22 +753,6 @@ margin-bottom: 20px;
   }
 };
             defs.body = {
-  "type" : "object",
-  "properties" : {
-    "password" : {
-      "type" : "string"
-    }
-  }
-};
-            defs.body_1 = {
-  "type" : "object",
-  "properties" : {
-    "password" : {
-      "type" : "string"
-    }
-  }
-};
-            defs.body_2 = {
   "type" : "object",
   "properties" : {
     "content" : {
@@ -860,6 +798,22 @@ margin-bottom: 20px;
   "properties" : {
     "token" : {
       "type" : "string"
+    }
+  }
+};
+            defs.inline_response_404 = {
+  "properties" : {
+    "error" : {
+      "type" : "string",
+      "example" : ""
+    }
+  }
+};
+            defs.inline_response_404_1 = {
+  "properties" : {
+    "error" : {
+      "type" : "string",
+      "example" : "Wrong Username or Password"
     }
   }
 };
@@ -910,19 +864,13 @@ margin-bottom: 20px;
                     <li data-group="Article" data-name="getArticleById" class="">
                       <a href="#api-Article-getArticleById">getArticleById</a>
                     </li>
-                    <li data-group="Article" data-name="getArticlesOfUser" class="">
-                      <a href="#api-Article-getArticlesOfUser">getArticlesOfUser</a>
+                    <li data-group="Article" data-name="getArticles" class="">
+                      <a href="#api-Article-getArticles">getArticles</a>
                     </li>
                     <li data-group="Article" data-name="getCommentsOfArticle" class="">
                       <a href="#api-Article-getCommentsOfArticle">getCommentsOfArticle</a>
                     </li>
                   <li class="nav-header" data-group="User"><a href="#api-User">API Methods - User</a></li>
-                    <li data-group="User" data-name="changePassword" class="">
-                      <a href="#api-User-changePassword">changePassword</a>
-                    </li>
-                    <li data-group="User" data-name="createArticle" class="">
-                      <a href="#api-User-createArticle">createArticle</a>
-                    </li>
                     <li data-group="User" data-name="createComment" class="">
                       <a href="#api-User-createComment">createComment</a>
                     </li>
@@ -1259,8 +1207,7 @@ except ApiException as e:
                                         var schemaWrapper = {
   "description" : "Bad Request",
   "schema" : {
-    "type" : "string",
-    "example" : ""
+    "$ref" : "#/definitions/inline_response_404"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -1303,8 +1250,7 @@ except ApiException as e:
                                         var schemaWrapper = {
   "description" : "Not Found",
   "schema" : {
-    "type" : "string",
-    "example" : ""
+    "$ref" : "#/definitions/inline_response_404"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -1333,41 +1279,41 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Article-getArticlesOfUser">
-                      <article id="api-Article-getArticlesOfUser-0" data-group="User" data-name="getArticlesOfUser" data-version="0">
+                    <div id="api-Article-getArticles">
+                      <article id="api-Article-getArticles-0" data-group="User" data-name="getArticles" data-version="0">
                         <div class="pull-left">
-                          <h1>getArticlesOfUser</h1>
-                          <p>Get articles of the user</p>
+                          <h1>getArticles</h1>
+                          <p>Get articles</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Get all articles&#39; info except their contents of the user</p>
+                        <p class="marked">Get the title of the request page of articles</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/articles/{username}</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/articles</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Article-getArticlesOfUser-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Article-getArticlesOfUser-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Article-getArticlesOfUser-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Article-getArticlesOfUser-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Article-getArticlesOfUser-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Article-getArticlesOfUser-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Article-getArticlesOfUser-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Article-getArticlesOfUser-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Article-getArticlesOfUser-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Article-getArticlesOfUser-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Article-getArticlesOfUser-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Article-getArticles-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Article-getArticles-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Article-getArticles-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Article-getArticles-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Article-getArticles-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Article-getArticles-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Article-getArticles-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Article-getArticles-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Article-getArticles-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Article-getArticles-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Article-getArticles-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Article-getArticlesOfUser-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://blog.swagger.io/v3/articles/{username}"</code></pre>
+                          <div class="tab-pane active" id="examples-Article-getArticles-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://blog.swagger.io/v3/articles?page="</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Article-getArticlesOfUser-0-java">
+                          <div class="tab-pane" id="examples-Article-getArticles-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -1381,47 +1327,47 @@ public class ArticleApiExample {
     public static void main(String[] args) {
         
         ArticleApi apiInstance = new ArticleApi();
-        String username = username_example; // String | 
+        String page = page_example; // String | the request page
         try {
-            ArticlesResponse result = apiInstance.getArticlesOfUser(username);
+            ArticlesResponse result = apiInstance.getArticles(page);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling ArticleApi#getArticlesOfUser");
+            System.err.println("Exception when calling ArticleApi#getArticles");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Article-getArticlesOfUser-0-android">
+                          <div class="tab-pane" id="examples-Article-getArticles-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.ArticleApi;
 
 public class ArticleApiExample {
 
     public static void main(String[] args) {
         ArticleApi apiInstance = new ArticleApi();
-        String username = username_example; // String | 
+        String page = page_example; // String | the request page
         try {
-            ArticlesResponse result = apiInstance.getArticlesOfUser(username);
+            ArticlesResponse result = apiInstance.getArticles(page);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling ArticleApi#getArticlesOfUser");
+            System.err.println("Exception when calling ArticleApi#getArticles");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Article-getArticlesOfUser-0-groovy">
+  <div class="tab-pane" id="examples-Article-getArticles-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Article-getArticlesOfUser-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *username = username_example; // 
+                            <div class="tab-pane" id="examples-Article-getArticles-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *page = page_example; // the request page
 
 ArticleApi *apiInstance = [[ArticleApi alloc] init];
 
-// Get articles of the user
-[apiInstance getArticlesOfUserWith:username
+// Get articles
+[apiInstance getArticlesWith:page
               completionHandler: ^(ArticlesResponse output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -1433,12 +1379,12 @@ ArticleApi *apiInstance = [[ArticleApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Article-getArticlesOfUser-0-javascript">
+                            <div class="tab-pane" id="examples-Article-getArticles-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var SwaggerBlog = require('swagger_blog');
 
 var api = new SwaggerBlog.ArticleApi()
 
-var username = username_example; // {String} 
+var page = page_example; // {String} the request page
 
 
 var callback = function(error, data, response) {
@@ -1448,14 +1394,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getArticlesOfUser(username, callback);
+api.getArticles(page, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Article-getArticlesOfUser-0-angular">
+                            <!--<div class="tab-pane" id="examples-Article-getArticles-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Article-getArticlesOfUser-0-csharp">
+                            <div class="tab-pane" id="examples-Article-getArticles-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -1464,23 +1410,23 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class getArticlesOfUserExample
+    public class getArticlesExample
     {
         public void main()
         {
             
             var apiInstance = new ArticleApi();
-            var username = username_example;  // String | 
+            var page = page_example;  // String | the request page
 
             try
             {
-                // Get articles of the user
-                ArticlesResponse result = apiInstance.getArticlesOfUser(username);
+                // Get articles
+                ArticlesResponse result = apiInstance.getArticles(page);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling ArticleApi.getArticlesOfUser: " + e.Message );
+                Debug.Print("Exception when calling ArticleApi.getArticles: " + e.Message );
             }
         }
     }
@@ -1488,40 +1434,40 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Article-getArticlesOfUser-0-php">
+                            <div class="tab-pane" id="examples-Article-getArticles-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\ArticleApi();
-$username = username_example; // String | 
+$page = page_example; // String | the request page
 
 try {
-    $result = $api_instance->getArticlesOfUser($username);
+    $result = $api_instance->getArticles($page);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ArticleApi->getArticlesOfUser: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ArticleApi->getArticles: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Article-getArticlesOfUser-0-perl">
+                            <div class="tab-pane" id="examples-Article-getArticles-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::ArticleApi;
 
 my $api_instance = WWW::SwaggerClient::ArticleApi->new();
-my $username = username_example; # String | 
+my $page = page_example; # String | the request page
 
 eval { 
-    my $result = $api_instance->getArticlesOfUser(username => $username);
+    my $result = $api_instance->getArticles(page => $page);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling ArticleApi->getArticlesOfUser: $@\n";
+    warn "Exception when calling ArticleApi->getArticles: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Article-getArticlesOfUser-0-python">
+                            <div class="tab-pane" id="examples-Article-getArticles-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -1530,30 +1476,34 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.ArticleApi()
-username = username_example # String | 
+page = page_example # String | the request page
 
 try: 
-    # Get articles of the user
-    api_response = api_instance.get_articles_of_user(username)
+    # Get articles
+    api_response = api_instance.get_articles(page)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling ArticleApi->getArticlesOfUser: %s\n" % e)</code></pre>
+    print("Exception when calling ArticleApi->getArticles: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
                           <h2>Parameters</h2>
 
-                            <div class="methodsubtabletitle">Path parameters</div>
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
                             <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">username*</td>
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">page*</td>
 <td>
 
 
-    <div id="d2e199_getArticlesOfUser_username">
+    <div id="d2e199_getArticles_page">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
@@ -1561,7 +1511,7 @@ except ApiException as e:
                 </span>
 
                     <div class="inner description">
-                        
+                        the request page
                     </div>
             </div>
                 <div class="inner required">
@@ -1574,23 +1524,19 @@ except ApiException as e:
 
                             </table>
 
-
-
-
-
                           <h2>Responses</h2>
                             <h3> Status: 200 - Successful Operation </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-getArticlesOfUser-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-getArticles-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-getArticlesOfUser-200-schema">
-                                  <div id='responses-getArticlesOfUser-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-getArticles-200-schema">
+                                  <div id='responses-getArticles-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1611,14 +1557,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-getArticlesOfUser-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-getArticlesOfUser-200-schema-200');
+                                        $('#responses-getArticles-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getArticles-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-getArticlesOfUser-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-getArticles-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -1626,21 +1572,20 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-getArticlesOfUser-404-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-getArticles-404-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-getArticlesOfUser-404-schema">
-                                  <div id='responses-getArticlesOfUser-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-getArticles-404-schema">
+                                  <div id='responses-getArticles-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
   "description" : "Not Found",
   "schema" : {
-    "type" : "string",
-    "example" : ""
+    "$ref" : "#/definitions/inline_response_404"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -1655,14 +1600,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-getArticlesOfUser-404-schema-data').val(stringify(schema));
-                                        var result = $('#responses-getArticlesOfUser-404-schema-404');
+                                        $('#responses-getArticles-404-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getArticles-404-schema-404');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-getArticlesOfUser-404-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-getArticles-404-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -1915,7 +1860,7 @@ except ApiException as e:
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - successful operation </h3>
+                            <h3> Status: 200 - Successful Operation </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
@@ -1930,7 +1875,7 @@ except ApiException as e:
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "successful operation",
+  "description" : "Successful Operation",
   "schema" : {
     "$ref" : "#/definitions/Comments"
   }
@@ -1975,8 +1920,7 @@ except ApiException as e:
                                         var schemaWrapper = {
   "description" : "Bad Request",
   "schema" : {
-    "type" : "string",
-    "example" : ""
+    "$ref" : "#/definitions/inline_response_404"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -2019,8 +1963,7 @@ except ApiException as e:
                                         var schemaWrapper = {
   "description" : "Not Found",
   "schema" : {
-    "type" : "string",
-    "example" : ""
+    "$ref" : "#/definitions/inline_response_404"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -2052,737 +1995,6 @@ except ApiException as e:
                   </section>
                 <section id="api-User">
                   <h1>User</h1>
-                    <div id="api-User-changePassword">
-                      <article id="api-User-changePassword-0" data-group="User" data-name="changePassword" data-version="0">
-                        <div class="pull-left">
-                          <h1>changePassword</h1>
-                          <p>change password</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">This can only be done by the logged in user.</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/user/{username}</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-User-changePassword-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-User-changePassword-0-java">Java</a></li>
-                          <li class=""><a href="#examples-User-changePassword-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-User-changePassword-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-User-changePassword-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-User-changePassword-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-User-changePassword-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-User-changePassword-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-User-changePassword-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-User-changePassword-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-User-changePassword-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-User-changePassword-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT "https://blog.swagger.io/v3/user/{username}"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-User-changePassword-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.UserApi;
-
-import java.io.File;
-import java.util.*;
-
-public class UserApiExample {
-
-    public static void main(String[] args) {
-        
-        UserApi apiInstance = new UserApi();
-        String username = username_example; // String | name that need to be updated
-        Body body = ; // Body | Updated user object
-        try {
-            apiInstance.changePassword(username, body);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling UserApi#changePassword");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-User-changePassword-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.UserApi;
-
-public class UserApiExample {
-
-    public static void main(String[] args) {
-        UserApi apiInstance = new UserApi();
-        String username = username_example; // String | name that need to be updated
-        Body body = ; // Body | Updated user object
-        try {
-            apiInstance.changePassword(username, body);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling UserApi#changePassword");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-User-changePassword-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-User-changePassword-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *username = username_example; // name that need to be updated
-Body *body = ; // Updated user object
-
-UserApi *apiInstance = [[UserApi alloc] init];
-
-// change password
-[apiInstance changePasswordWith:username
-    body:body
-              completionHandler: ^(NSError* error) {
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-User-changePassword-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var SwaggerBlog = require('swagger_blog');
-
-var api = new SwaggerBlog.UserApi()
-
-var username = username_example; // {String} name that need to be updated
-
-var body = ; // {Body} Updated user object
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-api.changePassword(username, body, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-User-changePassword-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-User-changePassword-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class changePasswordExample
-    {
-        public void main()
-        {
-            
-            var apiInstance = new UserApi();
-            var username = username_example;  // String | name that need to be updated
-            var body = new Body(); // Body | Updated user object
-
-            try
-            {
-                // change password
-                apiInstance.changePassword(username, body);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling UserApi.changePassword: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-User-changePassword-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\Api\UserApi();
-$username = username_example; // String | name that need to be updated
-$body = ; // Body | Updated user object
-
-try {
-    $api_instance->changePassword($username, $body);
-} catch (Exception $e) {
-    echo 'Exception when calling UserApi->changePassword: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-User-changePassword-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::UserApi;
-
-my $api_instance = WWW::SwaggerClient::UserApi->new();
-my $username = username_example; # String | name that need to be updated
-my $body = WWW::SwaggerClient::Object::Body->new(); # Body | Updated user object
-
-eval { 
-    $api_instance->changePassword(username => $username, body => $body);
-};
-if ($@) {
-    warn "Exception when calling UserApi->changePassword: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-User-changePassword-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.UserApi()
-username = username_example # String | name that need to be updated
-body =  # Body | Updated user object
-
-try: 
-    # change password
-    api_instance.change_password(username, body)
-except ApiException as e:
-    print("Exception when calling UserApi->changePassword: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-                            <div class="methodsubtabletitle">Path parameters</div>
-                            <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">username*</td>
-<td>
-
-
-    <div id="d2e199_changePassword_username">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    String
-                </span>
-
-                    <div class="inner description">
-                        name that need to be updated
-                    </div>
-            </div>
-                <div class="inner required">
-                    Required
-                </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                            </table>
-
-
-                            <div class="methodsubtabletitle">Body parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
-<td>
-
-
-<script>
-$(document).ready(function() {
-  var schemaWrapper = {
-  "in" : "body",
-  "name" : "body",
-  "description" : "Updated user object",
-  "required" : true,
-  "schema" : {
-    "$ref" : "#/definitions/body"
-  }
-};
-  var schema = schemaWrapper.schema;
-  if (schema.$ref != null) {
-    schema = defsParser.$refs.get(schema.$ref);
-  } else {
-    schemaWrapper.definitions = Object.assign({}, defs);
-    $RefParser.dereference(schemaWrapper).catch(function(err) {
-      console.log(err);
-    });
-  }
-
-  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_changePassword_body');
-  result.empty();
-  result.append(view.render());
-});
-</script>
-<div id="d2e199_changePassword_body"></div>
-</td>
-</tr>
-
-                            </table>
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - successful operation </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                            <h3> Status: 400 - Bad Request </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-changePassword-400-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-changePassword-400-schema">
-                                  <div id='responses-changePassword-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Bad Request",
-  "schema" : {
-    "type" : "string"
-  }
-};
-                                        var schema = schemaWrapper.schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-changePassword-400-schema-data').val(stringify(schema));
-                                        var result = $('#responses-changePassword-400-schema-400');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-changePassword-400-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-User-createArticle">
-                      <article id="api-User-createArticle-0" data-group="User" data-name="createArticle" data-version="0">
-                        <div class="pull-left">
-                          <h1>createArticle</h1>
-                          <p>create article</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">create an new article for the user</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/user/{username}/article</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-User-createArticle-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-User-createArticle-0-java">Java</a></li>
-                          <li class=""><a href="#examples-User-createArticle-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-User-createArticle-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-User-createArticle-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-User-createArticle-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-User-createArticle-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-User-createArticle-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-User-createArticle-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-User-createArticle-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-User-createArticle-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-User-createArticle-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://blog.swagger.io/v3/user/{username}/article"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-User-createArticle-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.UserApi;
-
-import java.io.File;
-import java.util.*;
-
-public class UserApiExample {
-
-    public static void main(String[] args) {
-        
-        UserApi apiInstance = new UserApi();
-        String username = username_example; // String | the name of user
-        ArticleCreate body = ; // ArticleCreate | the content of the article
-        try {
-            Article result = apiInstance.createArticle(username, body);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling UserApi#createArticle");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-User-createArticle-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.UserApi;
-
-public class UserApiExample {
-
-    public static void main(String[] args) {
-        UserApi apiInstance = new UserApi();
-        String username = username_example; // String | the name of user
-        ArticleCreate body = ; // ArticleCreate | the content of the article
-        try {
-            Article result = apiInstance.createArticle(username, body);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling UserApi#createArticle");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-User-createArticle-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-User-createArticle-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *username = username_example; // the name of user
-ArticleCreate *body = ; // the content of the article
-
-UserApi *apiInstance = [[UserApi alloc] init];
-
-// create article
-[apiInstance createArticleWith:username
-    body:body
-              completionHandler: ^(Article output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-User-createArticle-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var SwaggerBlog = require('swagger_blog');
-
-var api = new SwaggerBlog.UserApi()
-
-var username = username_example; // {String} the name of user
-
-var body = ; // {ArticleCreate} the content of the article
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.createArticle(username, body, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-User-createArticle-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-User-createArticle-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class createArticleExample
-    {
-        public void main()
-        {
-            
-            var apiInstance = new UserApi();
-            var username = username_example;  // String | the name of user
-            var body = new ArticleCreate(); // ArticleCreate | the content of the article
-
-            try
-            {
-                // create article
-                Article result = apiInstance.createArticle(username, body);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling UserApi.createArticle: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-User-createArticle-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\Api\UserApi();
-$username = username_example; // String | the name of user
-$body = ; // ArticleCreate | the content of the article
-
-try {
-    $result = $api_instance->createArticle($username, $body);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling UserApi->createArticle: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-User-createArticle-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::UserApi;
-
-my $api_instance = WWW::SwaggerClient::UserApi->new();
-my $username = username_example; # String | the name of user
-my $body = WWW::SwaggerClient::Object::ArticleCreate->new(); # ArticleCreate | the content of the article
-
-eval { 
-    my $result = $api_instance->createArticle(username => $username, body => $body);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling UserApi->createArticle: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-User-createArticle-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.UserApi()
-username = username_example # String | the name of user
-body =  # ArticleCreate | the content of the article
-
-try: 
-    # create article
-    api_response = api_instance.create_article(username, body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UserApi->createArticle: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-                            <div class="methodsubtabletitle">Path parameters</div>
-                            <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">username*</td>
-<td>
-
-
-    <div id="d2e199_createArticle_username">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    String
-                </span>
-
-                    <div class="inner description">
-                        the name of user
-                    </div>
-            </div>
-                <div class="inner required">
-                    Required
-                </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                            </table>
-
-
-                            <div class="methodsubtabletitle">Body parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
-<td>
-
-
-<script>
-$(document).ready(function() {
-  var schemaWrapper = {
-  "in" : "body",
-  "name" : "body",
-  "description" : "the content of the article",
-  "required" : true,
-  "schema" : {
-    "$ref" : "#/definitions/ArticleCreate"
-  }
-};
-  var schema = schemaWrapper.schema;
-  if (schema.$ref != null) {
-    schema = defsParser.$refs.get(schema.$ref);
-  } else {
-    schemaWrapper.definitions = Object.assign({}, defs);
-    $RefParser.dereference(schemaWrapper).catch(function(err) {
-      console.log(err);
-    });
-  }
-
-  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_createArticle_body');
-  result.empty();
-  result.append(view.render());
-});
-</script>
-<div id="d2e199_createArticle_body"></div>
-</td>
-</tr>
-
-                            </table>
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - Successful Operation </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-createArticle-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-createArticle-200-schema">
-                                  <div id='responses-createArticle-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Successful Operation",
-  "schema" : {
-    "$ref" : "#/definitions/Article"
-  }
-};
-                                        var schema = schemaWrapper.schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-createArticle-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-createArticle-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-createArticle-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 400 - Bad Request </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-createArticle-400-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-createArticle-400-schema">
-                                  <div id='responses-createArticle-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Bad Request",
-  "schema" : {
-    "type" : "string",
-    "example" : ""
-  }
-};
-                                        var schema = schemaWrapper.schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-createArticle-400-schema-data').val(stringify(schema));
-                                        var result = $('#responses-createArticle-400-schema-400');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-createArticle-400-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
                     <div id="api-User-createComment">
                       <article id="api-User-createComment-0" data-group="User" data-name="createComment" data-version="0">
                         <div class="pull-left">
@@ -2833,7 +2045,7 @@ public class UserApiExample {
         UserApi apiInstance = new UserApi();
         String username = username_example; // String | 
         Integer id = 56; // Integer | 
-        Body_2 body = ; // Body_2 | 
+        Body body = ; // Body | 
         try {
             Comment result = apiInstance.createComment(username, id, body);
             System.out.println(result);
@@ -2854,7 +2066,7 @@ public class UserApiExample {
         UserApi apiInstance = new UserApi();
         String username = username_example; // String | 
         Integer id = 56; // Integer | 
-        Body_2 body = ; // Body_2 | 
+        Body body = ; // Body | 
         try {
             Comment result = apiInstance.createComment(username, id, body);
             System.out.println(result);
@@ -2872,7 +2084,7 @@ public class UserApiExample {
                             <div class="tab-pane" id="examples-User-createComment-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">String *username = username_example; // 
 Integer *id = 56; // 
-Body_2 *body = ; // 
+Body *body = ; // 
 
 UserApi *apiInstance = [[UserApi alloc] init];
 
@@ -2900,7 +2112,7 @@ var username = username_example; // {String}
 
 var id = 56; // {Integer} 
 
-var body = ; // {Body_2} 
+var body = ; // {Body} 
 
 
 var callback = function(error, data, response) {
@@ -2934,7 +2146,7 @@ namespace Example
             var apiInstance = new UserApi();
             var username = username_example;  // String | 
             var id = 56;  // Integer | 
-            var body = new Body_2(); // Body_2 | 
+            var body = new Body(); // Body | 
 
             try
             {
@@ -2959,7 +2171,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $api_instance = new Swagger\Client\Api\UserApi();
 $username = username_example; // String | 
 $id = 56; // Integer | 
-$body = ; // Body_2 | 
+$body = ; // Body | 
 
 try {
     $result = $api_instance->createComment($username, $id, $body);
@@ -2978,7 +2190,7 @@ use WWW::SwaggerClient::UserApi;
 my $api_instance = WWW::SwaggerClient::UserApi->new();
 my $username = username_example; # String | 
 my $id = 56; # Integer | 
-my $body = WWW::SwaggerClient::Object::Body_2->new(); # Body_2 | 
+my $body = WWW::SwaggerClient::Object::Body->new(); # Body | 
 
 eval { 
     my $result = $api_instance->createComment(username => $username, id => $id, body => $body);
@@ -3000,7 +2212,7 @@ from pprint import pprint
 api_instance = swagger_client.UserApi()
 username = username_example # String | 
 id = 56 # Integer | 
-body =  # Body_2 | 
+body =  # Body | 
 
 try: 
     # create comment
@@ -3079,7 +2291,7 @@ $(document).ready(function() {
   "name" : "body",
   "required" : true,
   "schema" : {
-    "$ref" : "#/definitions/body_2"
+    "$ref" : "#/definitions/body"
   }
 };
   var schema = schemaWrapper.schema;
@@ -3167,8 +2379,7 @@ $(document).ready(function() {
                                         var schemaWrapper = {
   "description" : "Bad Request",
   "schema" : {
-    "type" : "string",
-    "example" : ""
+    "$ref" : "#/definitions/inline_response_404"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -3209,7 +2420,7 @@ $(document).ready(function() {
                         <p class="marked">Check user with username and password</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/user/{username}</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/auth/signin</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -3229,7 +2440,7 @@ $(document).ready(function() {
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-User-signIn-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://blog.swagger.io/v3/user/{username}"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://blog.swagger.io/v3/auth/signin"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-User-signIn-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3245,10 +2456,9 @@ public class UserApiExample {
     public static void main(String[] args) {
         
         UserApi apiInstance = new UserApi();
-        String username = username_example; // String | The name of the user
-        Body_1 body = ; // Body_1 | 
+        User body = ; // User | 
         try {
-            inline_response_200 result = apiInstance.signIn(username, body);
+            inline_response_200 result = apiInstance.signIn(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UserApi#signIn");
@@ -3265,10 +2475,9 @@ public class UserApiExample {
 
     public static void main(String[] args) {
         UserApi apiInstance = new UserApi();
-        String username = username_example; // String | The name of the user
-        Body_1 body = ; // Body_1 | 
+        User body = ; // User | 
         try {
-            inline_response_200 result = apiInstance.signIn(username, body);
+            inline_response_200 result = apiInstance.signIn(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UserApi#signIn");
@@ -3282,14 +2491,12 @@ public class UserApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-User-signIn-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *username = username_example; // The name of the user
-Body_1 *body = ; //  (optional)
+                              <pre class="prettyprint"><code class="language-cpp">User *body = ; // 
 
 UserApi *apiInstance = [[UserApi alloc] init];
 
 // sign in
-[apiInstance signInWith:username
-    body:body
+[apiInstance signInWith:body
               completionHandler: ^(inline_response_200 output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -3306,11 +2513,8 @@ UserApi *apiInstance = [[UserApi alloc] init];
 
 var api = new SwaggerBlog.UserApi()
 
-var username = username_example; // {String} The name of the user
+var body = ; // {User} 
 
-var opts = { 
-  'body':  // {Body_1} 
-};
 
 var callback = function(error, data, response) {
   if (error) {
@@ -3319,7 +2523,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.signIn(username, opts, callback);
+api.signIn(body, callback);
 </code></pre>
                             </div>
 
@@ -3341,13 +2545,12 @@ namespace Example
         {
             
             var apiInstance = new UserApi();
-            var username = username_example;  // String | The name of the user
-            var body = new Body_1(); // Body_1 |  (optional) 
+            var body = new User(); // User | 
 
             try
             {
                 // sign in
-                inline_response_200 result = apiInstance.signIn(username, body);
+                inline_response_200 result = apiInstance.signIn(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -3365,11 +2568,10 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\UserApi();
-$username = username_example; // String | The name of the user
-$body = ; // Body_1 | 
+$body = ; // User | 
 
 try {
-    $result = $api_instance->signIn($username, $body);
+    $result = $api_instance->signIn($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->signIn: ', $e->getMessage(), PHP_EOL;
@@ -3383,11 +2585,10 @@ use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::UserApi;
 
 my $api_instance = WWW::SwaggerClient::UserApi->new();
-my $username = username_example; # String | The name of the user
-my $body = WWW::SwaggerClient::Object::Body_1->new(); # Body_1 | 
+my $body = WWW::SwaggerClient::Object::User->new(); # User | 
 
 eval { 
-    my $result = $api_instance->signIn(username => $username, body => $body);
+    my $result = $api_instance->signIn(body => $body);
     print Dumper($result);
 };
 if ($@) {
@@ -3404,12 +2605,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.UserApi()
-username = username_example # String | The name of the user
-body =  # Body_1 |  (optional)
+body =  # User | 
 
 try: 
     # sign in
-    api_response = api_instance.sign_in(username, body=body)
+    api_response = api_instance.sign_in(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->signIn: %s\n" % e)</code></pre>
@@ -3418,36 +2618,6 @@ except ApiException as e:
 
                           <h2>Parameters</h2>
 
-                            <div class="methodsubtabletitle">Path parameters</div>
-                            <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">username*</td>
-<td>
-
-
-    <div id="d2e199_signIn_username">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    String
-                </span>
-
-                    <div class="inner description">
-                        The name of the user
-                    </div>
-            </div>
-                <div class="inner required">
-                    Required
-                </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                            </table>
 
 
                             <div class="methodsubtabletitle">Body parameters</div>
@@ -3456,7 +2626,7 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">body </td>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
 <td>
 
 
@@ -3465,9 +2635,9 @@ $(document).ready(function() {
   var schemaWrapper = {
   "in" : "body",
   "name" : "body",
-  "required" : false,
+  "required" : true,
   "schema" : {
-    "$ref" : "#/definitions/body_1"
+    "$ref" : "#/definitions/User"
   }
 };
   var schema = schemaWrapper.schema;
@@ -3538,14 +2708,6 @@ $(document).ready(function() {
                                 </div>
                             </div>
 
-                            <h3> Status: 400 - Bad Request </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
                             <h3> Status: 404 - Not Found </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
@@ -3563,8 +2725,7 @@ $(document).ready(function() {
                                         var schemaWrapper = {
   "description" : "Not Found",
   "schema" : {
-    "type" : "string",
-    "example" : "Wrong Username or Password"
+    "$ref" : "#/definitions/inline_response_404_1"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -3605,7 +2766,7 @@ $(document).ready(function() {
                         <p class="marked">Create a new user with the only username</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/user</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/auth/signup</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -3625,7 +2786,7 @@ $(document).ready(function() {
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-User-signUp-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://blog.swagger.io/v3/user"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://blog.swagger.io/v3/auth/signup"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-User-signUp-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3868,8 +3029,7 @@ $(document).ready(function() {
                                         var schemaWrapper = {
   "description" : "Bad Requested",
   "schema" : {
-    "type" : "string",
-    "example" : ""
+    "$ref" : "#/definitions/inline_response_404"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -3912,7 +3072,7 @@ $(document).ready(function() {
           </div>
           <div id="generator">
             <div class="content">
-              Generated 2018-12-10T06:09:31.012Z
+              Generated 2018-12-13T02:49:56.513Z
             </div>
           </div>
       </div>
