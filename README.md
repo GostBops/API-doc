@@ -10,4 +10,4 @@ GostBop 黄灿铭 16340079
 
 9ayhub 何坤宁 16340073 [【服务计算】| 简单 web 服务与客户端开发实战---项目小结](https://blog.csdn.net/cat_xing/article/details/85040543)
 
-skywalker00001 侯翼 16340075
+skywalker00001 侯翼 16340075 [服务计算--Simple Blog项目总结](https://blog.csdn.net/Skywalker1111/article/details/85042595)
