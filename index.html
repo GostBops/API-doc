@@ -757,6 +757,9 @@ margin-bottom: 20px;
   "properties" : {
     "content" : {
       "type" : "string"
+    },
+    "author" : {
+      "type" : "string"
     }
   }
 };
@@ -2007,7 +2010,7 @@ except ApiException as e:
                         <p class="marked">user creates a comment for the article</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/user/{username}/article/{id}/comment</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/article/{id}/comment</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -2027,7 +2030,7 @@ except ApiException as e:
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-User-createComment-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://blog.swagger.io/v3/user/{username}/article/{id}/comment"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://blog.swagger.io/v3/article/{id}/comment"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-User-createComment-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2043,11 +2046,10 @@ public class UserApiExample {
     public static void main(String[] args) {
         
         UserApi apiInstance = new UserApi();
-        String username = username_example; // String | 
         Integer id = 56; // Integer | 
         Body body = ; // Body | 
         try {
-            Comment result = apiInstance.createComment(username, id, body);
+            Comment result = apiInstance.createComment(id, body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UserApi#createComment");
@@ -2064,11 +2066,10 @@ public class UserApiExample {
 
     public static void main(String[] args) {
         UserApi apiInstance = new UserApi();
-        String username = username_example; // String | 
         Integer id = 56; // Integer | 
         Body body = ; // Body | 
         try {
-            Comment result = apiInstance.createComment(username, id, body);
+            Comment result = apiInstance.createComment(id, body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UserApi#createComment");
@@ -2082,15 +2083,13 @@ public class UserApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-User-createComment-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *username = username_example; // 
-Integer *id = 56; // 
+                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // 
 Body *body = ; // 
 
 UserApi *apiInstance = [[UserApi alloc] init];
 
 // create comment
-[apiInstance createCommentWith:username
-    id:id
+[apiInstance createCommentWith:id
     body:body
               completionHandler: ^(Comment output, NSError* error) {
                             if (output) {
@@ -2108,8 +2107,6 @@ UserApi *apiInstance = [[UserApi alloc] init];
 
 var api = new SwaggerBlog.UserApi()
 
-var username = username_example; // {String} 
-
 var id = 56; // {Integer} 
 
 var body = ; // {Body} 
@@ -2122,7 +2119,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.createComment(username, id, body, callback);
+api.createComment(id, body, callback);
 </code></pre>
                             </div>
 
@@ -2144,14 +2141,13 @@ namespace Example
         {
             
             var apiInstance = new UserApi();
-            var username = username_example;  // String | 
             var id = 56;  // Integer | 
             var body = new Body(); // Body | 
 
             try
             {
                 // create comment
-                Comment result = apiInstance.createComment(username, id, body);
+                Comment result = apiInstance.createComment(id, body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2169,12 +2165,11 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\UserApi();
-$username = username_example; // String | 
 $id = 56; // Integer | 
 $body = ; // Body | 
 
 try {
-    $result = $api_instance->createComment($username, $id, $body);
+    $result = $api_instance->createComment($id, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->createComment: ', $e->getMessage(), PHP_EOL;
@@ -2188,12 +2183,11 @@ use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::UserApi;
 
 my $api_instance = WWW::SwaggerClient::UserApi->new();
-my $username = username_example; # String | 
 my $id = 56; # Integer | 
 my $body = WWW::SwaggerClient::Object::Body->new(); # Body | 
 
 eval { 
-    my $result = $api_instance->createComment(username => $username, id => $id, body => $body);
+    my $result = $api_instance->createComment(id => $id, body => $body);
     print Dumper($result);
 };
 if ($@) {
@@ -2210,13 +2204,12 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.UserApi()
-username = username_example # String | 
 id = 56 # Integer | 
 body =  # Body | 
 
 try: 
     # create comment
-    api_response = api_instance.create_comment(username, id, body)
+    api_response = api_instance.create_comment(id, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->createComment: %s\n" % e)</code></pre>
@@ -2231,26 +2224,6 @@ except ApiException as e:
                                   <th width="150px">Name</th>
                                   <th>Description</th>
                                 </tr>
-                                  <tr><td style="width:150px;">username*</td>
-<td>
-
-
-    <div id="d2e199_createComment_username">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    String
-                </span>
-
-            </div>
-                <div class="inner required">
-                    Required
-                </div>
-        </div>
-    </div>
-</td>
-</tr>
-
                                   <tr><td style="width:150px;">id*</td>
 <td>
 
@@ -3072,7 +3045,7 @@ $(document).ready(function() {
           </div>
           <div id="generator">
             <div class="content">
-              Generated 2018-12-13T02:49:56.513Z
+              Generated 2018-12-16T05:50:00.675Z
             </div>
           </div>
       </div>
